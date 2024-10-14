@@ -131,7 +131,7 @@ def main():
 
     application.job_queue.run_daily(
         post_daily_parami,
-        time=time(6, 18, tzinfo=timezone(LOCAL_UTC_OFFSET))  # Adjust timezone
+        time=time(8, 0, tzinfo=timezone(LOCAL_UTC_OFFSET))  # Adjust timezone to Kyiv time
     )
 
     application.run_polling()
