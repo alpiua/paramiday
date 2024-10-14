@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "paramibot"
+version = "0.1.0"
+description = ""
+authors = ["Oleksii Pylypchuk <oleksii.pylypchuk@dhamma.org>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+python-telegram-bot = {version = "^21.6", extras = ["job-queue"]}
+python-dotenv = "^1.0.1"
+gspread = "^6.1.3"
+oauth2client = "^4.1.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
