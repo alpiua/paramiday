@@ -17,14 +17,16 @@ CREDENTIALS_FILE = os.path.join(BASE_DIR, "paramibot-googleapi-credentials.json"
 CHANNEL_IDS = {
     'ukrainian': '@paramiday_ua',
     'english': '@paramiday_en',
-    'russian': '@paramiday_ru'
+    'russian': '@paramiday_ru',
+    'belarusian': '@paramiday_by'
 }
 
 # Google sheet documents with Parami description
 SHEET_IDS = {
     'ukrainian': '1bCkn8RzSa08wdK1tln2JgJNuO2rHkhSVaKvePllPwdU',
     'english': '1XpvTmRkK-Xuws_RWQhYoGejT_MrcWu5Op_aV8o3H9rE',
-    'russian': '1Pb2wpjZowGNRC9qjtxdnG0_Q2DVYzqFsoElu-8xA8G8'
+    'russian': '1Pb2wpjZowGNRC9qjtxdnG0_Q2DVYzqFsoElu-8xA8G8',
+    'belarusian': '1gLJLrC6f1sn91qRLAblRYVjEyz1IRu07lSF0OKRtadw'
 }
 
 # Logging configuration
@@ -69,7 +71,8 @@ async def paramis_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     language = {
         'uk': 'ukrainian',
         'en': 'english',
-        'ru': 'russian'
+        'ru': 'russian',
+        'by': 'belarusian',
     }.get(command, 'ukrainian')  # Default to Ukrainian if not found
 
     # Load paramis from the appropriate Google Sheet
@@ -79,7 +82,8 @@ async def paramis_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     headers = {
         'ukrainian': "     ⭐ *Десять досконалих якостей* ⭐",
         'english': "     ⭐ *The Ten Perfections* ⭐",
-        'russian': "     ⭐ *Десять благих качеств* ⭐"
+        'russian': "     ⭐ *Десять благих качеств* ⭐",
+        'belarusian': "     ⭐ *Дзесяць добрых якасцей* ⭐"
     }
     header = headers[language]
 
@@ -125,7 +129,7 @@ def main():
     application = ApplicationBuilder().token(BOT_TOKEN).build()
     application.add_error_handler(error_handler)
 
-    application.add_handler(CommandHandler(["paramis_uk", "paramis_en", "paramis_ru"], paramis_handler))
+    application.add_handler(CommandHandler(["paramis_uk", "paramis_en", "paramis_ru", "paramis_by"], paramis_handler))
 
     LOCAL_UTC_OFFSET = timedelta(hours=3)
 
